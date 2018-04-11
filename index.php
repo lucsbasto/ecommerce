@@ -12,7 +12,6 @@ $app->config('debug', true);
 $app->get('/', function() {
 
         $page = new Page();
-        $sql = new Sql();
         $page->setTpl("index");
 
 
