@@ -3,7 +3,7 @@
 namespace Classes;
 use Rain\Tpl;
 
-class Pager{
+class Page{
     private $tpl;
     private $options;
     private $defaults = [

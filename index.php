@@ -2,8 +2,7 @@
 
 require_once("vendor/autoload.php");
 use \Slim\Slim; //pra não precisar chamar new \Slim\Slim()
-use \Classes\Pager; // Pra criar o html
-
+use \Classes\Page; // Pra criar o html
 
 $app = new Slim();
 
@@ -12,9 +11,10 @@ $app->config('debug', true);
 //daqui pra baixo é só o que me interessa
 $app->get('/', function() {
 
-        $page = new Pager();
-
+        $page = new Page();
+        $sql = new Sql();
         $page->setTpl("index");
+
 
 
 });
