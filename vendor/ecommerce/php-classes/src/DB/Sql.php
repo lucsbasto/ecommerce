@@ -1,6 +1,6 @@
 <?php 
 
-namespace ecommerce\DB;
+namespace Classes\DB;
 
 class Sql {
 
