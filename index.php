@@ -1,18 +1,21 @@
 <?php 
 
 require_once("vendor/autoload.php");
+use \Slim\Slim; //pra não precisar chamar new \Slim\Slim()
+use \Classes\Pager; // Pra criar o html
 
-$app = new \Slim\Slim();
+
+$app = new Slim();
 
 $app->config('debug', true);
-
+//daqui pra cima é o que vou precisar pra aplicação funcionar
+//daqui pra baixo é só o que me interessa
 $app->get('/', function() {
 
-    $sql = new Classes\DB\Sql();
+        $page = new Pager();
 
-    $result = $sql->select("SELECT * FROM tb_users");
+        $page->setTpl("index");
 
-    echo json_encode($result);
 
 });
 
