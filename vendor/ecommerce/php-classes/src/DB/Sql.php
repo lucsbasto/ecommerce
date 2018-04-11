@@ -1,6 +1,6 @@
 <?php 
 
-namespace Classes\DB;
+namespace Classes\DB; //quando for chamar a classe Classes\DB\Sql()
 
 class Sql {
 
