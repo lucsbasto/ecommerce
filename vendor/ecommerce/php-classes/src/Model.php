@@ -21,6 +21,7 @@ class Model{
     }
     public function setData($data = array()){
         foreach ($data as $key => $value){
+            //ex: setLogin(parametros){}
             $this->{"set$key"}($value); //faz a chamada dos getters e setters dinamicamente
         }
     }
