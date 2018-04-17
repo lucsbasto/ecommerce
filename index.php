@@ -68,8 +68,12 @@ $app->get('/admin/users/:id/delete', function ($id){
 
 $app->get('/admin/users/:id/', function ($id){
     User::verifyLogin();
+    $user = new User();
+    $user->get((int)$id);
     $page = new PageAdmin();
-    $page->setTpl('users-update');
+    $page->setTpl('users-update', array(
+        "user"=> $user->getValues()
+    ));
 });
 
 $app->post("/admin/users/create", function() {
@@ -79,13 +83,21 @@ $app->post("/admin/users/create", function() {
     $_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
     $user->setData($_POST);
     $user->save();
-    //header("Location: /admin/users");
+    header("Location: /admin/users");
     exit;
 
 });
 
 $app->post('/admin/users/:id', function ($id){
     User::verifyLogin();
+    $user = new User();
+    $_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
+    $user->get($id);
+    $user->setData($_POST);
+    $user->update();
+    header("Location: /admin/users");
+    exit;
+
 });
 
 $app->get('/admin/users/:id/delete', function ($id){
