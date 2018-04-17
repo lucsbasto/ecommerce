@@ -10,6 +10,7 @@ class Model{
         $fieldName = substr($name, 3, strlen($name));
         switch ($method){
             case "get":
+                var_dump($this->values[$fieldName]);
                 return $this->values[$fieldName];
             break;
 

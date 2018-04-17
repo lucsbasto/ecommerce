@@ -48,6 +48,50 @@ $app->get('/admin/logout/', function(){
     exit;
 });
 
+$app->get('/admin/users', function (){
+    User::verifyLogin();
+    $users = User::listAll();
+
+    $page = new PageAdmin();
+    $page->setTpl('users', array("users"=>$users));
+});
+
+$app->get('/admin/users/create', function (){
+    User::verifyLogin();
+    $page = new PageAdmin();
+    $page->setTpl('users-create');
+
+});
+
+$app->get('/admin/users/:id/delete', function ($id){
+    User::verifyLogin();
+});
+
+$app->get('/admin/users/:id/', function ($id){
+    User::verifyLogin();
+    $page = new PageAdmin();
+    $page->setTpl('users-update');
+});
+
+$app->post('/admin/users/create', function (){
+    User::verifyLogin();
+    $user = new User();
+    $_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
+    var_dump($_POST);
+    $user->setData($_POST);
+    $user->save();
+    header("Location: /admin/users");
+    exit;
+});
+
+$app->post('/admin/users/:id', function ($id){
+    User::verifyLogin();
+});
+
+$app->get('/admin/users/:id/delete', function ($id){
+    User::verifyLogin();
+});
+
 
 $app->run();
 
