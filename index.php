@@ -100,8 +100,19 @@ $app->post('/admin/users/:id', function ($id){
 
 });
 
-$app->get('/admin/users/:id/delete', function ($id){
+$app->get("/admin/users/:id/delete/", function($id) {
+
     User::verifyLogin();
+
+    $user = new User();
+
+    $user->get((int)$id);
+
+    $user->delete();
+
+    header("Location: /admin/users");
+    exit;
+
 });
 
 
