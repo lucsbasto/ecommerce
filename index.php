@@ -7,7 +7,6 @@ use \Classes\Page; // Pra criar o html do site
 use \Classes\PageAdmin; //Pra criar o html do admin
 use \Classes\Model\User;
 
-
 $app = new Slim();
 
 $app->config('debug', true);
@@ -38,7 +37,7 @@ $app->get('/admin/login/', function(){
 
 $app->post('/admin/login', function() {
     User::login($_POST["login"], $_POST["password"]);
-    header("Location: /admin");
+    //header("Location: /admin");
     exit;
 });
 
@@ -73,15 +72,16 @@ $app->get('/admin/users/:id/', function ($id){
     $page->setTpl('users-update');
 });
 
-$app->post('/admin/users/create', function (){
+$app->post("/admin/users/create", function() {
+
     User::verifyLogin();
     $user = new User();
     $_POST["inadmin"] = (isset($_POST["inadmin"]))?1:0;
-    var_dump($_POST);
     $user->setData($_POST);
     $user->save();
-    header("Location: /admin/users");
+    //header("Location: /admin/users");
     exit;
+
 });
 
 $app->post('/admin/users/:id', function ($id){
@@ -96,3 +96,12 @@ $app->get('/admin/users/:id/delete', function ($id){
 $app->run();
 
  ?>
+
+
+
+
+
+
+
+
+
